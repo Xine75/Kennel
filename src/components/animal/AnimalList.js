@@ -7,7 +7,7 @@ export const AnimalList = () => {
   // This state changes when `getAnimals()` is invoked below
   const { animals, getAnimals } = useContext(AnimalContext)
 
-  //useEffect - reach out to the world for something
+  //useEffect - reach out to the world for something - is something like an eventListener
   useEffect(() => {
     console.log("AnimalList: useEffect - getAnimals")
     getAnimals()

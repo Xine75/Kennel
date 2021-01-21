@@ -5,6 +5,12 @@ export const AnimalContext = createContext()
 
 // This component establishes what data can be used.
 export const AnimalProvider = (props) => {
+    //this is the hook, below
+    //animals is a state varialbe, when we change the state, with setAnimals,
+    //react will update the DOM for us. Must be called setSomething
+    //[animals, setAnimals] is array destructuring
+    //So useState([]) returns two things in an array,and we have intialized
+    //them animals and setAnimals
     const [animals, setAnimals] = useState([])
 
     const getAnimals = () => {
