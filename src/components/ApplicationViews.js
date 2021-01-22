@@ -19,32 +19,41 @@ export const ApplicationViews = () => {
             </Route>
 
             {/* Render the animal list when http://localhost:3000/animals */}
-        <AnimalProvider> 
-            <Route exact path="/animals">
-                <AnimalList />
-            </Route>
-        </AnimalProvider>
+            <AnimalProvider>
+                <LocationProvider>
+                    <CustomerProvider>
+                        <Route exact path="/animals">
+                            <AnimalList />
+                        </Route>
+                        <Route exact path="/animals/create">
+                            <AnimalForm />
+                        </Route>
+                    </CustomerProvider>
+                </LocationProvider>
+            </AnimalProvider>
 
-            {/* Render the animal list when http://localhost:3000/animals */}
-        <LocationProvider>
-            <Route exact path="/locations">
-                <LocationList />
-            </Route>
-        </LocationProvider>
 
-             {/* Render the animal list when http://localhost:3000/animals */}
-        <CustomerProvider>
-             <Route exact path="/customers">
-                <CustomerList />
-            </Route>
-        </CustomerProvider>
 
-             {/* Render the animal list when http://localhost:3000/animals */}
-        <EmployeeProvider>
-             <Route exact path="/employees">
-                <EmployeeList />
-            </Route>
-        </EmployeeProvider>
+            {/* Render the animal list when http://localhost:3000/animals */ }
+    <LocationProvider>
+        <Route exact path="/locations">
+            <LocationList />
+        </Route>
+    </LocationProvider>
+
+    {/* Render the animal list when http://localhost:3000/animals */ }
+    <CustomerProvider>
+        <Route exact path="/customers">
+            <CustomerList />
+        </Route>
+    </CustomerProvider>
+
+    {/* Render the animal list when http://localhost:3000/animals */ }
+    <EmployeeProvider>
+        <Route exact path="/employees">
+            <EmployeeList />
+        </Route>
+    </EmployeeProvider>
 
         </>
     )
