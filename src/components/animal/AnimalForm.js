@@ -76,10 +76,15 @@ export const AnimalForm = () => {
           </fieldset>
           <fieldset>
               <div className="form-group">
+                  <label htmlFor="breed">Animal breed:</label>
+                  <input type="text" id="breed" onChange={handleControlledInputChange} required className="form-control" placeholder="Animal breed" value={animal.breed}/>
+              </div>
+          </fieldset>
+          <fieldset>
+              <div className="form-group">
                   <label htmlFor="location">Assign to location: </label>
-                  <input type="text" id="name" onChange={handleControlledInputChange} required className="form-control" placeholder="Location name" value={location.name}/>
 
-                  <select defaultValue={animal.locationId} name="locationId" id="locationId" className="form-control" >
+                  <select defaultValue={animal.locationId} onChange={handleControlledInputChange} name="locationId" id="locationId" className="form-control" >
                       <option value="0">Select a location</option>
                       {locations.map(l => (
                           <option key={l.id} value={l.id}>
@@ -92,9 +97,8 @@ export const AnimalForm = () => {
           <fieldset>
               <div className="form-group">
                   <label htmlFor="customerId">Customer: </label>
-                  <input type="text" id="name" onChange={handleControlledInputChange} required className="form-control" placeholder="Customer name" value={customer.name}/>
 
-                  <select defaultValue={animal.customerId} name="customer" id="customerId" className="form-control" >
+                  <select defaultValue={animal.customerId} onChange={handleControlledInputChange} name="customer" id="customerId" className="form-control" >
                       <option value="0">Select a customer</option>
                       {customers.map(c => (
                           <option key={c.id} value={c.id}>

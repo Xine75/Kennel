@@ -15,21 +15,13 @@ export const AnimalList = () => {
   //useEffect - reach out to the world for something - is something like an eventListener
   useEffect(() => {
     console.log("AnimalList: useEffect - getAnimals")
-    getLocations()
-    .then(getCustomers)
+    getCustomers()
+    .then(getLocations)
     .then(getAnimals)
 }, [])
 
-animals.map(animal => {
-  const owner = customers.find(c => c.id === animal.customerId)
-  const clinic = locations.find(l => l.id === animal.locationId)
 
-  return <AnimalCard key={animal.id}
-              location={clinic}
-              customer={owner}
-              animal={animal} />
-})
-}
+
 
 const history = useHistory()
 
@@ -42,9 +34,15 @@ return (
         <div className="animals">
         {
 			animals.map(animal => {
-				return <AnimalCard key={animal.id} animal={animal} />
-			})
+        const owner = customers.find(c => c.id === animal.customerId)
+        const clinic = locations.find(l => l.id === animal.locationId)
+      
+        return <AnimalCard key={animal.id}
+                    location={clinic}
+                    customer={owner}
+                    animal={animal} />
+      })
         }
         </div>
     </>
-)
+)}
