@@ -1,9 +1,10 @@
 import React from "react"
 import "./Location.css"
 
-export const LocationCard = () => (
+export const LocationCard = ({location}) => (
     <section className="location">
-        <h3 className="location__name">Nashville Kennels North</h3>
-        <div className="location__address">Address: 500 Puppy Way</div>
+        <h3 className="location__name">{location.name}</h3>
+        <div className="location__address">{location.address}</div>
+        <small className="location__animals">{location.animals[0].name}</small>
     </section>
 )
