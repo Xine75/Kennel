@@ -1,65 +1,33 @@
-import React from "react"
-import { NavBar } from "./nav/NavBar"
-import { ApplicationViews } from "./ApplicationViews"
-import "./Kennel.css"
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+import { ApplicationViews } from "./ApplicationViews";
+import { NavBar } from "./nav/NavBar";
+import { Login } from "./auth/Login";
+import { Register } from "./auth/Register";
+import "./Kennel.css";
 
 export const Kennel = () => (
-    <>
-        <NavBar />
-        <ApplicationViews />
-    </>
-)
+  <>
+    <Route
+      render={() => {
+        if (localStorage.getItem("kennel_customer")) {
+          return (
+            <>
+              <NavBar />
+              <ApplicationViews />
+            </>
+          );
+        } else {
+          return <Redirect to="/login" />;
+        }
+      }}
+    />
 
-
-
-
-
-
-
-
-// import React from "react"
-// import { AnimalCard } from "./animal/AnimalCard"
-// import { CustomerCard } from "./customer/CustomerCard"
-// import { EmployeeCard } from "./employee/EmployeeCard"
-// import { LocationCard } from "./location/LocationCard"
-// import { PropsAndState } from "./PropsAndState"
-// import "./Kennel.css"
-// import "./animal/Animal.css"
-// import "./customer/Customer.css"
-// import "./employee/Employee.css"
-// import "./location/Location.css"
-
-
-// export const Kennel = () => (
-//     <>
-        
-//         <h2>Animals</h2>
-//         <article className="animals">
-//             <AnimalCard />
-//             <AnimalCard />
-//             <AnimalCard />
-//         </article>
-
-//         <h2>Employees</h2>
-//         <article className="employees">
-//             <EmployeeCard />
-//             <EmployeeCard />
-//             <EmployeeCard />
-//         </article>
-
-//         <h2>Locations</h2>
-//         <article className="locations">
-//             <LocationCard />
-//             <LocationCard />
-            
-//         </article>
-
-//         <h2>Customers</h2>
-//         <article className="customers">
-//             <CustomerCard />
-//             <CustomerCard />
-//             <CustomerCard />
-//             <CustomerCard />
-//         </article>
-//     </>
-// )
+    <Route path="/login">
+      <Login />
+    </Route>
+    <Route path="/register">
+      <Register />
+    </Route>
+  </>
+);
