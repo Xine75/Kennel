@@ -23,12 +23,15 @@ export const ApplicationViews = () => {
             <AnimalProvider>
                 <LocationProvider>
                     <CustomerProvider>
+                        {/* both these routes need access to all these providers */}
                         <Route exact path="/animals">
                             <AnimalList />
                         </Route>
+
                         <Route exact path="/animals/create">
                             <AnimalForm />
                         </Route>
+
                     </CustomerProvider>
                 </LocationProvider>
             </AnimalProvider>
