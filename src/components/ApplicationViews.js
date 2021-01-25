@@ -23,7 +23,7 @@ export const ApplicationViews = () => {
             <AnimalProvider>
                 <LocationProvider>
                     <CustomerProvider>
-                        //both these routes need access to all these providers
+                        {/* both these routes need access to all these providers */}
                         <Route exact path="/animals">
                             <AnimalList />
                         </Route>

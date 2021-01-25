@@ -16,7 +16,7 @@ export const AnimalForm = () => {
     With React, we do not target the DOM with `document.querySelector()`. Instead, our return (render) reacts to state or props.
 
     Define the intial state of the form inputs with useState()
-    this get updated on the fly, keystroke by keystroke */
+    this get updated on the fly, keystroke by keystroke as the user inputs it */
 
     const [animal, setAnimal] = useState({
       name: "",
@@ -28,14 +28,14 @@ export const AnimalForm = () => {
     const history = useHistory();
 
     /*
-    Reach out to the world and get customers state
-    and locations state on initialization.
+    Reach out to the world and get customer state
+    and location state on initialization, so we can provide their data on the form dropdowns
     */
     useEffect(() => {
       getCustomers().then(getLocations)
     }, [])
 
-    //when a field changes, update state. The return will re-render and display based on the values in state
+    //when a field changes, update state. The return will re-render and display based on the values in state-
     //Controlled component
     const handleControlledInputChange = (event) => {
       /* When changing a state object or array,
@@ -56,8 +56,8 @@ export const AnimalForm = () => {
       const locationId = parseInt(animal.locationId)
       const customerId = parseInt(animal.customerId)
 
-      if (locationId === 0) {
-        window.alert("Please select a location")
+      if (locationId === 0 || customerId === 0) {
+        window.alert("Please select a location and a customer")
       } else {
           animal.locationId = locationId
           animal.customerId = customerId 
