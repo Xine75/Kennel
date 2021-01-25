@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react"
+import { useHistory } from 'react-router-dom';
 import { LocationContext } from "../location/LocationProvider"
 import { AnimalContext } from "../animal/AnimalProvider"
 import { CustomerContext } from "../customer/CustomerProvider"
 import "./Animal.css"
-import { useHistory } from 'react-router-dom';
 
+//the entire rest of this component defines the function AnimalForm
 export const AnimalForm = () => {
+    //useContext allows you to share and pass data via the Context API (built into React)
     const { addAnimal } = useContext(AnimalContext)
     const { locations, getLocations } = useContext(LocationContext)
     const { customers, getCustomers } = useContext(CustomerContext)
@@ -14,11 +16,11 @@ export const AnimalForm = () => {
     With React, we do not target the DOM with `document.querySelector()`. Instead, our return (render) reacts to state or props.
 
     Define the intial state of the form inputs with useState()
-    */
+    this get updated on the fly, keystroke by keystroke */
 
     const [animal, setAnimal] = useState({
       name: "",
-      breed:"",
+      breed: "",
       locationId: 0,
       customerId: 0
     });
@@ -37,7 +39,8 @@ export const AnimalForm = () => {
     //Controlled component
     const handleControlledInputChange = (event) => {
       /* When changing a state object or array,
-      always create a copy, make changes, and then set state.*/
+      always create a copy, make changes, and then set state.
+      ... is a spread operator - it takes each prop of animal and makes it a property of the new obj we are making*/
       const newAnimal = { ...animal }
       /* Animal is an object with properties.
       Set the property to the new value
@@ -64,7 +67,7 @@ export const AnimalForm = () => {
         .then(() => history.push("/animals"))
       }
     }
-
+    //onChange is an event listener and it uses the function that we have defined above, handeControlInputChange
     return (
       <form className="animalForm">
           <h2 className="animalForm__title">New Animal</h2>
