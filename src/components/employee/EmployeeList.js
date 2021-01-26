@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 import { EmployeeContext } from "./EmployeeProvider"
-import { EmployeeCard } from "./EmployeeCard"
 import { LocationContext } from "../location/LocationProvider"
+import { EmployeeCard } from "./EmployeeCard"
 import "./Employee.css"
 
 export const EmployeeList = () => {
@@ -34,6 +34,7 @@ return (
       const clinic = locations.find(l => l.id === employee.locationId)
     //creating a new object with React by adding new properties to employeeCard
       return <EmployeeCard key={employee.id}
+                  employee = {employee}
                   location={clinic}
                    />
     })

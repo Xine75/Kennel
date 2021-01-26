@@ -37,13 +37,13 @@ const handleControlledInputChange = (e) => {
     setEmployee(newEmployee)
 }
 const handleClickSaveEmployee = (e) => {
-    e.preventDevault()
+    e.preventDefault()
 
     const locationId = parseInt(employee.locationId)
 
     if (locationId === 0) {
         window.alert("Please select a location")
-    }else{
+    } else {
         employee.locationId = locationId
 
     addEmployee(employee)
