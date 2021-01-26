@@ -14,7 +14,7 @@ export const LocationProvider = (props) => {
     const [locations, setLocations] = useState([])
 
     const getLocations = () => {
-        return fetch("http://localhost:8088/locations?_embed=animals")
+        return fetch("http://localhost:8088/locations?_embed=animals&_embed=employees")
         .then(res => res.json())
         .then(setLocations)
     }
