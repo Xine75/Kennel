@@ -4,6 +4,7 @@ import { Home } from "./Home"
 import { AnimalProvider } from "./animal/AnimalProvider"
 import { AnimalList } from "./animal/AnimalList"
 import { AnimalForm } from "./animal/AnimalForm"
+import { AnimalDetail} from "./animal/AnimalDetail"
 import { LocationProvider } from "./location/LocationProvider"
 import { LocationList } from "./location/LocationList"
 import { CustomerProvider } from "./customer/CustomerProvider"
@@ -35,7 +36,14 @@ export const ApplicationViews = () => {
                     </CustomerProvider>
                 </LocationProvider>
             </AnimalProvider>
-
+{/* :animalId(\d+) tells React to look for which animal chosen :  
+(\d+) is a "regular expression" that means any digit of any length 
+- it will then save the varioable inside :animalId*/}
+            <AnimalProvider>
+                <Route exact path="/animals/detail/:animalId(\d+)">
+                    <AnimalDetail />
+                </Route>
+            </AnimalProvider>
 
 
             {/* Render the animal list when http://localhost:3000/animals */ }
