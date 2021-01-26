@@ -13,6 +13,7 @@ import { CustomerList } from "./customer/CustomerList"
 import { EmployeeProvider } from "./employee/EmployeeProvider"
 import { EmployeeList } from "./employee/EmployeeList"
 import { EmployeeForm } from "./employee/EmployeeForm"
+import { EmployeeDetail } from "./employee/EmployeeDetail"
 
 export const ApplicationViews = () => {
     return (
@@ -40,7 +41,7 @@ export const ApplicationViews = () => {
             </AnimalProvider>
 {/* :animalId(\d+) tells React to look for which animal chosen :  
 (\d+) is a "regular expression" that means any digit of any length 
-- it will then save the varioable inside :animalId*/}
+- it will then save the variable inside :animalId*/}
             <AnimalProvider>
                 <Route exact path="/animals/detail/:animalId(\d+)">
                     <AnimalDetail />
@@ -83,6 +84,12 @@ export const ApplicationViews = () => {
                  <EmployeeForm />
             </Route>
         </LocationProvider>
+    </EmployeeProvider>
+
+    <EmployeeProvider>
+            <Route exact path="/employees/detail/:employeeId(\d+)">
+                 <EmployeeDetail />
+            </Route>
     </EmployeeProvider>
 
         </>
