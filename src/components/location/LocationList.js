@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom"
 import { LocationContext } from "./LocationProvider"
 import { LocationCard } from "./LocationCard"
 import { EmployeeContext } from "../employee/EmployeeProvider"
-import { AnimalContex } from "../animal/AnimalProvider"
+import { AnimalContext } from "../animal/AnimalProvider"
 import "./Location.css"
 
 export const LocationList = () => {
