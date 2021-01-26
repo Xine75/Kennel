@@ -1,15 +1,23 @@
 import React, { useContext, useEffect, useState } from "react"
 import { AnimalContext } from "./AnimalProvider"
 import "./Animal.css"
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 // useParams is a hook that allows us to grab parameters inside the URL
 
 export const AnimalDetail = () => {
-  const { getAnimalById } = useContext(AnimalContext)
+  const { getAnimalById, releaseAnimal } = useContext(AnimalContext)
     //this time the state of animal is an object - it's just one animal, hence the {} inside useState
 	const [animal, setAnimal] = useState({})
 
-	const {animalId} = useParams();  //returns an object - grabs the id off the animal selected
+  const {animalId} = useParams();  //returns an object - grabs the id off the animal selected
+  const history = useHistory()
+
+  const handleRelease = () => {
+    releaseAnimal(animal.id)
+      .then(() => {
+        history.push("/animals")
+      })
+  }
 	
 
   useEffect(() => {
@@ -27,6 +35,8 @@ export const AnimalDetail = () => {
       {/* What's up with the question mark???? See below.*/}
       <div className="animal__location">Location: {animal.location?.name}</div>
       <div className="animal__owner">Customer: {animal.customer?.name}</div>
+      <button onClick={handleRelease}>Release Animal</button>
+
     </section>
   )
 }
