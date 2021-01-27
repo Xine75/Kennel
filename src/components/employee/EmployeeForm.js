@@ -34,7 +34,9 @@ const handleControlledInputChange = (e) => {
 }
 
 const handleClickSaveEmployee = () => {
+    
     const locationId = parseInt(employee.locationId)
+
     if (locationId === 0) {
         window.alert("Please select a location")
     } else {
