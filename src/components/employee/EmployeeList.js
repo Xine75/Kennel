@@ -15,7 +15,6 @@ export const EmployeeList = () => {
     console.log("EmplyeeList: useEffect - getEmployees")
     getLocations()
     .then(getEmployees)
-    console.log("employees", employees)
   }, [])
 //useHistory is a hook that gives us access to all the routes. It gives us a history of all the paths
 //that we followed to this point. If we push something to it, that thing goes into the history.  It will look
