@@ -5,6 +5,7 @@ import { AnimalProvider } from "./animal/AnimalProvider"
 import { AnimalList } from "./animal/AnimalList"
 import { AnimalForm } from "./animal/AnimalForm"
 import { AnimalDetail} from "./animal/AnimalDetail"
+import { AnimalSearch } from "./animal/AnimalSearch"
 import { LocationProvider } from "./location/LocationProvider"
 import { LocationList } from "./location/LocationList"
 import { LocationDetail } from "./location/LocationDetail"
@@ -30,6 +31,7 @@ export const ApplicationViews = () => {
                     <CustomerProvider>
                         {/* both these routes need access to all these providers */}
                         <Route exact path="/animals">
+                            <AnimalSearch />
                             <AnimalList />
                         </Route>
 
