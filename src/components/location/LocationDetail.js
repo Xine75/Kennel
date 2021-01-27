@@ -28,9 +28,9 @@ export const LocationDetail = () => {
             <h3 className="location__name">{location.name}</h3>
             <div className="location__address">{location.address}</div>
             <h3 className="location__employees">Current Employees</h3>
-            <div className="location__employee__name">{location.employees.map(employee => employee.name + ", ")}</div>
+            <div className="location__employee__name">{location.employees.map(employee => employee.name).join(", ")}</div>
             <h3 className="location__animals">Current Boarders</h3>
-            <div className="location__animal__name">{location.animals.map(animal => animal.name + ", ")}</div>
+            <div className="location__animal__name">{location.animals.map(animal => animal.name).join(", ")}</div>
         </section>
     )
 
