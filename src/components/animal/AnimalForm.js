@@ -14,9 +14,9 @@ export const AnimalForm = () => {
     //for edit, hold on to state of animal in this view
     const [animal, setAnimal] = useState({
         name: "",
-        breed:"",
+        breed: "",
         customerId: 0,
-        locationId:0
+        locationId: 0
     })
     //wait for data before button is active
     const [isLoading, setIsLoading] = useState(true);
