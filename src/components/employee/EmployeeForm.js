@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { LocationContext } from "../location/LocationProvider"
 import { EmployeeContext } from "./EmployeeProvider"
 import "./Employee.css"
@@ -7,7 +7,7 @@ import "./Employee.css"
 //the entire rest of this component defines the function EmployeeForm
 export const EmployeeForm = () => {
     //useContext allows you to share and pass data via the Context API (built into React)
-    const { addEmployee } = useContext(EmployeeContext)
+    const { addEmployee, getEmployeeById, updateEmployee } = useContext(EmployeeContext)
     const { locations, getLocations } = useContext(LocationContext)
   /*
     With React, we do not target the DOM with `document.querySelector()`. Instead, our return (render) reacts to state or props.
@@ -19,15 +19,11 @@ export const EmployeeForm = () => {
         name: "",
         locationId: 0
       });
-  
-      const history = useHistory();
- /*
-    Reach out to the world and get customer state
-    and location state on initialization, so we can provide their data on the form dropdowns
-    */
-   useEffect(() => {
-       getLocations()
-   }, [])
+   //wait for data before button is active. Look at the button to see how it's setting itself to disabled or not based on this state
+        const [isLoading, setIsLoading] = useState(true);
+
+        const { employeeId } = useParams()
+        const history = useHistory();
 
 const handleControlledInputChange = (e) => {
     const newEmployee = {...employee }
@@ -36,23 +32,57 @@ const handleControlledInputChange = (e) => {
 
     setEmployee(newEmployee)
 }
-const handleClickSaveEmployee = (e) => {
-    e.preventDefault()
 
+const handleClickSaveEmployee = () => {
     const locationId = parseInt(employee.locationId)
-
     if (locationId === 0) {
         window.alert("Please select a location")
     } else {
-        employee.locationId = locationId
-
-    addEmployee(employee)
-    .then(() => history.push("/employees"))
+        //disable the button - no extra clicks
+        setIsLoading(true);
+        // This is how we check for whether the form is being used for editing or creating. If the URL that got us here has an id number in it, we know we want to update an existing record of an animal
+        if (employeeId){
+            //PUT - update
+            updateEmployee({
+                id: employee.id,
+                name: employee.name,
+                locationId: parseInt(employee.locationId)
+            })
+            .then(() => history.push(`/employees/detail/${employee.id}`))
+        } else {
+            //POST - add
+            addEmployee({
+                id: employee.id,
+                name: employee.name,
+                locationId: parseInt(employee.locationId)  
+            })
+            .then(() => history.push("/employees"))
+        }
     }
 }
+
+/*
+    Reach out to the world and get customer state
+    and location state on initialization, so we can provide their data on the form dropdowns
+    */
+   useEffect(() => {
+    getLocations().then(() => {
+        if (employeeId){
+            getEmployeeById(employeeId)
+            .then(employee => {
+                setEmployee(employee)
+                setIsLoading(false)
+            })
+        } else {
+            setIsLoading(false)
+        }
+    })
+}, [])
+
+
 return(
     <form className="employeeForm">
-        <h2 className="employeeForm__title">New Employee</h2>
+        <h2 className="employeeForm__title">{employeeId ? "Edit Employee" : "New Employee"}</h2>
         <fieldset>
             <div className="form-group">
                 <label htmlFor="name">Employee name:</label>
@@ -74,9 +104,12 @@ return(
               </div>
           </fieldset>
           <button className="btn btn-primary"
-            onClick={handleClickSaveEmployee}>
-            Save Employee
-          </button>
+          disabled={isLoading}
+          onClick={event => {
+            event.preventDefault() // Prevent browser from submitting the form and refreshing the page
+            handleClickSaveEmployee()
+          }}>
+        {employeeId ? "Edit Employee" : "New Employee"}</button>
     </form>
     )
 }
