@@ -14,6 +14,7 @@ export const AnimalProvider = (props) => {
     If a new state if computed during using the previous state, you can pass a function
     to setState. The function receives the previous value, and returns
     an updated value */
+    const [ searchTerms, setSearchTerms ] = useState("")
 
     /* gets animals from API. This fetch is expanded to append the location data to each animal */
     const getAnimals = () => {
@@ -66,7 +67,7 @@ export const AnimalProvider = (props) => {
     */
     return (
         <AnimalContext.Provider value={{
-            animals, getAnimals, addAnimal, getAnimalById, releaseAnimal, updateAnimal
+            animals, getAnimals, addAnimal, getAnimalById, releaseAnimal, updateAnimal, searchTerms, setSearchTerms
         }}>
             {props.children}
         </AnimalContext.Provider>
