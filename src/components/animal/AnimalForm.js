@@ -81,9 +81,6 @@ export const AnimalForm = () => {
       })
     }, [])
 
-    //since state controlls this component, we no longer need
-    //useRef(null) or ref
-
     return (
       <form className="animalForm">
         <h2 className="animalForm__title">{animalId ? <> Edit Animal </> : <>New Animal</>}</h2>
@@ -128,6 +125,7 @@ export const AnimalForm = () => {
             </select>
           </div>
         </fieldset>
+
         <button className="btn btn-primary"
           disabled={isLoading}
           onClick={event => {
